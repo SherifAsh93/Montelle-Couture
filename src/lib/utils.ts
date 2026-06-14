@@ -1,7 +1,7 @@
 export const SHIPPING_COST = 60
 export const FREE_SHIPPING_THRESHOLD = 800
 export const CURRENCY = 'EGP'
-export const SITE_NAME = 'Montal'
+export const SITE_NAME = 'Montelle Couture'
 
 export function formatPrice(price: number) {
   return `${price.toFixed(0)} ${CURRENCY}`

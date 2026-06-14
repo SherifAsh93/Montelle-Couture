@@ -1,7 +1,7 @@
 import { getAdminSession } from '@/lib/session'
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN
-const REPO = 'SherifAsh93/Montal'
+const REPO = 'SherifAsh93/Montelle'
 const BRANCH = 'main'
 const BASE_PATH = 'public/images/products'
 const CDN_BASE = `https://cdn.jsdelivr.net/gh/${REPO}@${BRANCH}`

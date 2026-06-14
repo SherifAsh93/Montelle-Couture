@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { ShoppingBag, Search, Menu, X } from 'lucide-react'
 import { useCart } from '@/store/cart'
@@ -9,15 +10,17 @@ const NAV_LINKS = [
   { label: 'Shop', href: '/shop' },
   { label: 'Collections', href: '/shop' },
   { label: 'About', href: '/about' },
+  { label: 'Journal', href: '/about' },
 ]
 
 const CATEGORY_LINKS = [
-  { label: 'Maternity Wear', href: '/shop/maternity-wear' },
+  { label: 'Veils', href: '/shop/accessories-veil' },
   { label: 'Robes', href: '/shop/robes' },
-  { label: 'Bridal Clothes', href: '/shop/bridal-clothes' },
-  { label: 'Bridal Accessories', href: '/shop/bridal-accessories' },
   { label: 'Corsets', href: '/shop/corsets' },
+  { label: 'Bridal Sets', href: '/shop/bridal-clothes' },
   { label: 'Dresses', href: '/shop/dresses' },
+  { label: 'Accessories', href: '/shop/bridal-accessories' },
+  { label: 'Custom Orders', href: '/about' },
 ]
 
 export function Navbar() {
@@ -66,7 +69,7 @@ export function Navbar() {
           {/* Center logo */}
           <div className="flex justify-center">
             <button onClick={handleLogoClick} className="focus:outline-none select-none">
-              <span className="font-cormorant text-3xl tracking-[0.2em] text-dark-900 font-light uppercase">Montal</span>
+              <Image src="/logo.jpeg" alt="Montelle Couture" width={110} height={88} className="object-contain" priority />
             </button>
           </div>
 
@@ -92,7 +95,7 @@ export function Navbar() {
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
           <button onClick={handleLogoClick} className="select-none focus:outline-none">
-            <span className="font-cormorant text-2xl tracking-[0.2em] text-dark-900 font-light uppercase">Montal</span>
+            <Image src="/logo.jpeg" alt="Montelle Couture" width={80} height={64} className="object-contain" priority />
           </button>
           <button onClick={openCart} className="relative text-dark-700 p-1">
             <ShoppingBag size={22} />

@@ -1,5 +1,8 @@
 .next/
 node_modules/
+resources/
+screenshots/
+prisma/seed-products.cjs
 .env.local
 .env
 *.log

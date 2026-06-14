@@ -55,7 +55,7 @@ export default function AdminPage() {
     <div className="min-h-screen flex items-center justify-center bg-cream-50 px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <span className="font-cormorant text-4xl tracking-[0.2em] text-dark-900 uppercase">Montal</span>
+          <span className="font-cormorant text-4xl tracking-[0.2em] text-dark-900 uppercase">Montelle</span>
           <p className="text-[10px] tracking-widest uppercase text-dark-700 mt-2">Admin Panel</p>
         </div>
         <form onSubmit={handleLogin} className="bg-white shadow-sm border border-cream-200 p-8 space-y-4">
@@ -80,7 +80,7 @@ export default function AdminPage() {
       {/* Admin Header */}
       <header className="bg-dark-900 text-cream-50 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <span className="font-cormorant text-2xl tracking-[0.2em] uppercase">Montal</span>
+          <span className="font-cormorant text-2xl tracking-[0.2em] uppercase">Montelle</span>
           <span className="text-[10px] tracking-widest uppercase text-gold-400">Admin</span>
         </div>
         <div className="flex items-center gap-4">

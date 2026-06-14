@@ -18,13 +18,13 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'Montal | Bridal & Luxury Fashion',
+  title: 'Montelle Couture | Bridal & Luxury Fashion',
   description: 'Luxury bridal wear, robes, corsets, and accessories — crafted for your most unforgettable moments.',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Montal',
+    title: 'Montelle',
   },
   icons: {
     apple: '/apple-touch-icon.png',
