@@ -139,19 +139,31 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* ── Mobile drawer ── */}
+      {/* ── Mobile drawer — z-[100] beats sticky header z-50 ── */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setMobileOpen(false)} />
-          <div className="absolute left-0 top-0 bottom-0 w-72 bg-cream-50 shadow-2xl flex flex-col pt-16 pb-8 px-8 animate-slide-in-right overflow-y-auto">
-            <nav className="flex flex-col gap-5">
+        <div className="fixed inset-0 z-[100] md:hidden">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} />
+          <div className="absolute left-0 top-0 bottom-0 w-[280px] bg-cream-50 shadow-2xl flex flex-col overflow-y-auto animate-slide-in-left">
+
+            {/* Drawer header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-cream-200 shrink-0">
+              <Image src="/logo.jpeg" alt="Montelle Couture" width={56} height={44} className="object-contain" />
+              <button onClick={() => setMobileOpen(false)} className="text-dark-900 p-1.5">
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Main links */}
+            <nav className="flex flex-col px-5 py-5 gap-0">
               {NAV_LINKS.map((l) => (
                 <Link key={l.label} href={l.href} onClick={() => setMobileOpen(false)}
-                  className="font-cormorant text-2xl text-dark-900 tracking-wide">
+                  className="font-cormorant text-2xl text-dark-900 tracking-wide py-3.5 border-b border-cream-200">
                   {l.label}
                 </Link>
               ))}
-              <div className="border-t border-cream-300 pt-5 flex flex-col gap-3.5">
+
+              {/* Category links */}
+              <div className="pt-5 flex flex-col gap-3.5">
                 {ALL_CATEGORY_LINKS.map((l) => (
                   <Link key={l.label} href={l.href} onClick={() => setMobileOpen(false)}
                     className="font-montserrat text-[11px] tracking-widest uppercase text-dark-700 hover:text-gold-600 transition-colors">
@@ -159,8 +171,10 @@ export function Navbar() {
                   </Link>
                 ))}
               </div>
+
+              {/* CTA */}
               <Link href="/about" onClick={() => setMobileOpen(false)}
-                className="mt-3 flex items-center justify-center gap-2 bg-gold-500 text-dark-900 font-montserrat text-[10px] tracking-widest uppercase px-4 py-3 font-medium">
+                className="mt-6 flex items-center justify-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 font-montserrat text-[10px] tracking-widest uppercase px-4 py-3.5 font-medium transition-colors">
                 <Calendar size={13} />
                 Book an Appointment
               </Link>
