@@ -119,19 +119,20 @@ export function Navbar() {
         </div>
 
         {/* ── Secondary category bar — desktop only ── */}
-        {/* CSS grid ensures the CTA button always gets its natural width */}
-        <div className="hidden md:grid border-b border-cream-200 bg-cream-100"
-             style={{ gridTemplateColumns: '1fr auto' }}>
-          <div className="flex items-center overflow-x-auto">
-            {SECONDARY_LINKS.map((l, i) => (
+        {/* Absolute-positioned CTA so it never gets pushed off-screen */}
+        <div className="hidden md:block border-b border-cream-200 bg-cream-100 relative">
+          <div className="flex items-center overflow-x-auto" style={{ paddingRight: '210px' }}>
+            {SECONDARY_LINKS.map((l) => (
               <Link key={l.label} href={l.href}
-                className={`flex-shrink-0 font-montserrat text-[10px] tracking-[0.12em] uppercase text-dark-700 hover:text-gold-600 hover:bg-cream-200 transition-colors px-6 py-3 whitespace-nowrap${i < SECONDARY_LINKS.length - 1 ? ' border-r border-r-[#eddcc8]' : ''}`}>
+                className="flex-shrink-0 font-montserrat text-[10px] tracking-[0.12em] uppercase text-dark-700 hover:text-gold-600 hover:bg-cream-200 transition-colors px-6 py-3 whitespace-nowrap"
+                style={{ borderRight: '1px solid #eddcc8' }}>
                 {l.label}
               </Link>
             ))}
           </div>
           <Link href="/about"
-            className="flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 font-montserrat text-[9px] tracking-[0.12em] uppercase px-6 py-3 font-medium transition-colors whitespace-nowrap border-l border-l-[#a8873d]">
+            className="absolute right-0 top-0 bottom-0 flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 font-montserrat text-[9px] tracking-[0.12em] uppercase px-6 font-medium transition-colors whitespace-nowrap"
+            style={{ borderLeft: '1px solid #a8873d' }}>
             <Calendar size={12} />
             Book an Appointment
           </Link>
