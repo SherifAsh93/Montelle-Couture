@@ -119,20 +119,20 @@ export function Navbar() {
         </div>
 
         {/* ── Secondary category bar — desktop only ── */}
-        {/* Absolute-positioned CTA so it never gets pushed off-screen */}
         <div className="hidden md:block border-b border-cream-200 bg-cream-100 relative">
-          <div className="flex items-center overflow-x-auto" style={{ paddingRight: '210px' }}>
+          {/* paddingRight reserves space for the absolutely-positioned CTA */}
+          <div className="flex items-center overflow-x-auto" style={{ paddingRight: '220px' }}>
             {SECONDARY_LINKS.map((l) => (
               <Link key={l.label} href={l.href}
-                className="flex-shrink-0 font-montserrat text-[10px] tracking-[0.12em] uppercase text-dark-700 hover:text-gold-600 hover:bg-cream-200 transition-colors px-6 py-3 whitespace-nowrap"
-                style={{ borderRight: '1px solid rgba(0,0,0,0.1)' }}>
+                className="flex-shrink-0 font-montserrat text-[10px] tracking-[0.12em] uppercase text-dark-700 hover:text-gold-600 hover:bg-cream-200 transition-colors whitespace-nowrap"
+                style={{ padding: '12px 28px', borderRight: '1px solid rgba(0,0,0,0.12)' }}>
                 {l.label}
               </Link>
             ))}
           </div>
           <Link href="/about"
-            className="absolute right-0 top-0 bottom-0 flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 font-montserrat text-[9px] tracking-[0.12em] uppercase px-6 font-medium transition-colors whitespace-nowrap"
-            style={{ borderLeft: '1px solid rgba(0,0,0,0.15)' }}>
+            className="absolute right-0 top-0 bottom-0 flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 font-montserrat text-[9px] tracking-[0.12em] uppercase font-medium transition-colors whitespace-nowrap"
+            style={{ padding: '0 20px', borderLeft: '1px solid rgba(0,0,0,0.15)' }}>
             <Calendar size={12} />
             Book an Appointment
           </Link>
