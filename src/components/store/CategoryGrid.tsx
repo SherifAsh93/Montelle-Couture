@@ -3,13 +3,14 @@ import Link from 'next/link'
 
 type Category = { id: string; name: string; slug: string; image?: string | null }
 
+// Warm champagne-gold tones — all within brand palette, visually varied
 const FALLBACK_GRADIENTS = [
-  'from-[#d6cbbf] to-[#bfb09f]',
-  'from-[#cec3b5] to-[#b8a895]',
-  'from-[#d9cfc2] to-[#c4b5a4]',
-  'from-[#c8bfb2] to-[#b0a492]',
-  'from-[#d4cabd] to-[#bcac9a]',
-  'from-[#ccc2b4] to-[#b5a48f]',
+  'from-[#d4c4a0] to-[#a89060]',
+  'from-[#c8b88a] to-[#9c8050]',
+  'from-[#d8c8a4] to-[#b09870]',
+  'from-[#c4b48a] to-[#988462]',
+  'from-[#ccbc98] to-[#a8906a]',
+  'from-[#d0c09c] to-[#aa9468]',
 ]
 
 export function CategoryGrid({ categories }: { categories: Category[] }) {

@@ -45,9 +45,18 @@ export default async function HomePage() {
               Our Story →
             </Link>
           </div>
-          <div className="h-80 md:h-96 bg-gradient-to-br from-cream-200 to-cream-300 relative overflow-hidden flex items-center justify-center">
-            <div className="absolute inset-5 border border-cream-300 pointer-events-none" />
-            <Image src="/logo.jpeg" alt="" width={160} height={128} className="object-contain opacity-20" />
+          <div className="h-80 md:h-96 bg-cream-200 relative overflow-hidden flex items-center justify-center">
+            {/* Nested decorative frames */}
+            <div className="absolute inset-6 border border-gold-400/30 pointer-events-none" />
+            <div className="absolute inset-9 border border-gold-400/15 pointer-events-none" />
+            {/* Centre ornament */}
+            <div className="flex flex-col items-center gap-3 z-10">
+              <div className="w-px h-12 bg-gold-400/40" />
+              <p className="font-montserrat text-[8px] tracking-[0.5em] uppercase text-gold-600/60">Montelle Couture</p>
+              <div className="w-8 h-px bg-gold-400/40" />
+              <p className="font-cormorant text-3xl italic text-gold-600/30">M</p>
+              <div className="w-px h-12 bg-gold-400/40" />
+            </div>
           </div>
         </div>
       </section>

@@ -13,7 +13,18 @@ const NAV_LINKS = [
   { label: 'Journal', href: '/about' },
 ]
 
-const CATEGORY_LINKS = [
+// Desktop secondary bar — 6 items matching the design mockup
+const SECONDARY_LINKS = [
+  { label: 'Veils', href: '/shop/accessories-veil' },
+  { label: 'Robes', href: '/shop/robes' },
+  { label: 'Corsets', href: '/shop/corsets' },
+  { label: 'Bridal Sets', href: '/shop/bridal-clothes' },
+  { label: 'Gift Cards', href: '/shop' },
+  { label: 'Custom Orders', href: '/about' },
+]
+
+// Mobile drawer — all categories
+const ALL_CATEGORY_LINKS = [
   { label: 'Veils', href: '/shop/accessories-veil' },
   { label: 'Robes', href: '/shop/robes' },
   { label: 'Corsets', href: '/shop/corsets' },
@@ -38,8 +49,7 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Single click → navigate home (Link default).
-  // Triple click within 800ms → go to admin instead.
+  // Single click → home. Triple click within 800 ms → admin.
   const handleLogoClick = useCallback((e: React.MouseEvent) => {
     logoClickCount.current += 1
     if (logoTimer.current) clearTimeout(logoTimer.current)
@@ -63,23 +73,23 @@ export function Navbar() {
           <nav className="flex items-center gap-8">
             {NAV_LINKS.map((l) => (
               <Link key={l.label} href={l.href}
-                className="font-montserrat text-[11px] tracking-widest uppercase text-dark-700 hover:text-gold-600 transition-colors cursor-pointer">
+                className="font-montserrat text-[11px] tracking-widest uppercase text-dark-700 hover:text-gold-600 transition-colors">
                 {l.label}
               </Link>
             ))}
           </nav>
 
           <div className="flex justify-center">
-            <Link href="/" onClick={handleLogoClick} className="cursor-pointer focus:outline-none select-none block">
+            <Link href="/" onClick={handleLogoClick} className="block cursor-pointer focus:outline-none select-none">
               <Image src="/logo.jpeg" alt="Montelle Couture" width={110} height={88} className="object-contain" priority />
             </Link>
           </div>
 
           <div className="flex items-center justify-end gap-6">
-            <Link href="/shop" className="text-dark-700 hover:text-gold-600 transition-colors cursor-pointer">
+            <Link href="/shop" className="text-dark-700 hover:text-gold-600 transition-colors">
               <Search size={18} />
             </Link>
-            <button onClick={openCart} className="relative text-dark-700 hover:text-gold-600 transition-colors cursor-pointer">
+            <button onClick={openCart} className="relative text-dark-700 hover:text-gold-600 transition-colors">
               <ShoppingBag size={18} />
               {cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-gold-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-medium">
@@ -92,13 +102,13 @@ export function Navbar() {
 
         {/* ── Mobile header ── */}
         <div className="md:hidden flex items-center justify-between px-4 py-3 border-b border-cream-200">
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-dark-900 p-1 cursor-pointer">
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-dark-900 p-1">
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
-          <Link href="/" onClick={handleLogoClick} className="cursor-pointer select-none focus:outline-none block">
+          <Link href="/" onClick={handleLogoClick} className="block cursor-pointer select-none focus:outline-none">
             <Image src="/logo.jpeg" alt="Montelle Couture" width={72} height={58} className="object-contain" priority />
           </Link>
-          <button onClick={openCart} className="relative text-dark-700 p-1 cursor-pointer">
+          <button onClick={openCart} className="relative text-dark-700 p-1">
             <ShoppingBag size={22} />
             {cartCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-gold-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">
@@ -108,18 +118,21 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* ── Secondary category bar (desktop only) ── */}
-        <div className="hidden md:flex items-center justify-between border-b border-cream-200 bg-cream-100">
-          <div className="flex items-center divide-x divide-cream-300">
-            {CATEGORY_LINKS.map((l) => (
+        {/* ── Secondary category bar — desktop only ── */}
+        <div className="hidden md:flex items-center border-b border-cream-200 bg-cream-100">
+          {/* Category links with explicit right-border separators */}
+          <div className="flex items-center flex-1 min-w-0">
+            {SECONDARY_LINKS.map((l, i) => (
               <Link key={l.label} href={l.href}
-                className="font-montserrat text-[10px] tracking-widest uppercase text-dark-700 hover:text-gold-600 hover:bg-cream-200 transition-colors px-5 py-3 whitespace-nowrap cursor-pointer">
+                style={{ borderRight: i < SECONDARY_LINKS.length - 1 ? '1px solid #eddcc8' : 'none' }}
+                className="font-montserrat text-[10px] tracking-[0.15em] uppercase text-dark-700 hover:text-gold-600 hover:bg-cream-200 transition-colors px-6 py-3 whitespace-nowrap">
                 {l.label}
               </Link>
             ))}
           </div>
+          {/* Book an Appointment CTA */}
           <Link href="/about"
-            className="flex-shrink-0 flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 font-montserrat text-[9px] tracking-widest uppercase px-5 py-3.5 font-medium transition-colors whitespace-nowrap cursor-pointer">
+            className="flex-shrink-0 flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 font-montserrat text-[9px] tracking-widest uppercase px-5 py-3.5 font-medium transition-colors whitespace-nowrap border-l border-gold-600">
             <Calendar size={12} />
             Book an Appointment
           </Link>
@@ -134,20 +147,20 @@ export function Navbar() {
             <nav className="flex flex-col gap-5">
               {NAV_LINKS.map((l) => (
                 <Link key={l.label} href={l.href} onClick={() => setMobileOpen(false)}
-                  className="font-cormorant text-2xl text-dark-900 tracking-wide cursor-pointer">
+                  className="font-cormorant text-2xl text-dark-900 tracking-wide">
                   {l.label}
                 </Link>
               ))}
               <div className="border-t border-cream-300 pt-5 flex flex-col gap-3.5">
-                {CATEGORY_LINKS.map((l) => (
+                {ALL_CATEGORY_LINKS.map((l) => (
                   <Link key={l.label} href={l.href} onClick={() => setMobileOpen(false)}
-                    className="font-montserrat text-[11px] tracking-widest uppercase text-dark-700 hover:text-gold-600 transition-colors cursor-pointer">
+                    className="font-montserrat text-[11px] tracking-widest uppercase text-dark-700 hover:text-gold-600 transition-colors">
                     {l.label}
                   </Link>
                 ))}
               </div>
               <Link href="/about" onClick={() => setMobileOpen(false)}
-                className="mt-3 flex items-center justify-center gap-2 bg-gold-500 text-dark-900 font-montserrat text-[10px] tracking-widest uppercase px-4 py-3 font-medium cursor-pointer">
+                className="mt-3 flex items-center justify-center gap-2 bg-gold-500 text-dark-900 font-montserrat text-[10px] tracking-widest uppercase px-4 py-3 font-medium">
                 <Calendar size={13} />
                 Book an Appointment
               </Link>
