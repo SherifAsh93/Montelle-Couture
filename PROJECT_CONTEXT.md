@@ -128,11 +128,12 @@ Sub (Dresses): Long Dress, Short Dress
 ## UI Notes
 
 - **Logo click:** single click → home `/`; triple-click (within 800ms) → admin `/admin`
-- **Hero fallback:** when no banners in DB, renders centered luxury layout with gold corner frames, decorative divider, and CTA. Looks intentional, not empty.
-- **Category cards fallback:** when no category images, warm champagne-gold gradients with dark text overlay (intentional luxury look)
-- **Secondary nav (desktop):** 6 items (Veils/Robes/Corsets/Bridal Sets/Gift Cards/Custom Orders) with `rgba(0,0,0,0.12)` separators and "Book an Appointment" gold CTA pinned right via `position:absolute`
-- **Tailwind v4 quirk:** `px-N` utilities give unexpectedly small values — use inline `style={{ padding: '...' }}` for critical spacing
-- **FeaturesStrip:** 2-col on mobile, 4-col on desktop
+- **Hero fallback:** centered luxury layout, gold corner frames, 72vh mobile / 88vh desktop. Looks intentional without a banner image.
+- **Category cards fallback:** warm champagne-gold gradients (`#e8ddc4 → #c8a870` range), dark text, light overlay — intentional luxury look without product images.
+- **Secondary nav (desktop):** 6 items with `rgba(0,0,0,0.12)` separators (inline border-right style), "Book an Appointment" pinned right via `position:absolute right-0`.
+- **FeaturesStrip:** 2-col on mobile, 4-col on desktop.
+- **CRITICAL Tailwind v4 bug:** An unlayered `* { margin:0; padding:0 }` CSS reset in globals.css was overriding ALL `@layer utilities` classes (unlayered beats layered regardless of specificity). This killed every `px-*`, `py-*`, `mx-*`, `my-*` utility site-wide. Fixed by removing the duplicate reset — Tailwind v4 base layer handles it correctly. Never add unlayered resets after `@import "tailwindcss"`.
+- **Secondary bar inline padding:** uses `style={{ padding:'12px 28px' }}` (not Tailwind px classes) for navbar links — added before the root-cause fix, still works correctly.
 
 ## Known Issues
 
