@@ -4,6 +4,7 @@ import { CategoryGrid } from '@/components/store/CategoryGrid'
 import { ProductCard } from '@/components/store/ProductCard'
 import { FeaturesStrip } from '@/components/store/FeaturesStrip'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const revalidate = 60
 
@@ -44,8 +45,9 @@ export default async function HomePage() {
               Our Story →
             </Link>
           </div>
-          <div className="h-80 md:h-96 bg-cream-200 rounded-sm overflow-hidden flex items-center justify-center">
-            <span className="font-cormorant text-7xl italic text-cream-300">M</span>
+          <div className="h-80 md:h-96 bg-gradient-to-br from-cream-200 to-cream-300 relative overflow-hidden flex items-center justify-center">
+            <div className="absolute inset-5 border border-cream-300 pointer-events-none" />
+            <Image src="/logo.jpeg" alt="" width={160} height={128} className="object-contain opacity-20" />
           </div>
         </div>
       </section>

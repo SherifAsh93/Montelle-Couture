@@ -38,11 +38,14 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleLogoClick = useCallback(() => {
+  // Single click → navigate home (Link default).
+  // Triple click within 800ms → go to admin instead.
+  const handleLogoClick = useCallback((e: React.MouseEvent) => {
     logoClickCount.current += 1
     if (logoTimer.current) clearTimeout(logoTimer.current)
     if (logoClickCount.current >= 3) {
       logoClickCount.current = 0
+      e.preventDefault()
       router.push('/admin')
       return
     }
@@ -53,33 +56,30 @@ export function Navbar() {
 
   return (
     <>
-      {/* Main sticky header */}
       <header className={`sticky top-0 z-50 bg-cream-50 transition-shadow duration-300 ${scrolled ? 'shadow-md' : ''}`}>
-        {/* Desktop: 3-column header */}
+
+        {/* ── Desktop 3-column header ── */}
         <div className="hidden md:grid grid-cols-3 items-center px-8 py-4 border-b border-cream-200">
-          {/* Left nav */}
           <nav className="flex items-center gap-8">
             {NAV_LINKS.map((l) => (
-              <Link key={l.href + l.label} href={l.href}
-                className="text-[11px] tracking-widest uppercase text-dark-700 hover:text-gold-600 font-montserrat transition-colors">
+              <Link key={l.label} href={l.href}
+                className="font-montserrat text-[11px] tracking-widest uppercase text-dark-700 hover:text-gold-600 transition-colors cursor-pointer">
                 {l.label}
               </Link>
             ))}
           </nav>
 
-          {/* Center logo */}
           <div className="flex justify-center">
-            <button onClick={handleLogoClick} className="focus:outline-none select-none">
+            <Link href="/" onClick={handleLogoClick} className="cursor-pointer focus:outline-none select-none block">
               <Image src="/logo.jpeg" alt="Montelle Couture" width={110} height={88} className="object-contain" priority />
-            </button>
+            </Link>
           </div>
 
-          {/* Right icons */}
           <div className="flex items-center justify-end gap-6">
-            <Link href="/shop" className="text-dark-700 hover:text-gold-600 transition-colors">
+            <Link href="/shop" className="text-dark-700 hover:text-gold-600 transition-colors cursor-pointer">
               <Search size={18} />
             </Link>
-            <button onClick={openCart} className="relative text-dark-700 hover:text-gold-600 transition-colors">
+            <button onClick={openCart} className="relative text-dark-700 hover:text-gold-600 transition-colors cursor-pointer">
               <ShoppingBag size={18} />
               {cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-gold-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-medium">
@@ -90,15 +90,15 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile header */}
-        <div className="md:hidden flex items-center justify-between px-4 py-4 border-b border-cream-200">
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-dark-900 p-1">
+        {/* ── Mobile header ── */}
+        <div className="md:hidden flex items-center justify-between px-4 py-3 border-b border-cream-200">
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-dark-900 p-1 cursor-pointer">
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
-          <button onClick={handleLogoClick} className="select-none focus:outline-none">
-            <Image src="/logo.jpeg" alt="Montelle Couture" width={80} height={64} className="object-contain" priority />
-          </button>
-          <button onClick={openCart} className="relative text-dark-700 p-1">
+          <Link href="/" onClick={handleLogoClick} className="cursor-pointer select-none focus:outline-none block">
+            <Image src="/logo.jpeg" alt="Montelle Couture" width={72} height={58} className="object-contain" priority />
+          </Link>
+          <button onClick={openCart} className="relative text-dark-700 p-1 cursor-pointer">
             <ShoppingBag size={22} />
             {cartCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-gold-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">
@@ -108,49 +108,46 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Secondary category bar (desktop) */}
-        <div className="hidden md:flex items-center justify-between px-8 py-0 border-b border-cream-200 bg-cream-100">
-          <div className="flex items-center gap-8">
-            {CATEGORY_LINKS.map((l, i) => (
-              <span key={l.href + l.label} className="flex items-center gap-8">
-                {i > 0 && <span className="text-cream-300 text-xs select-none">|</span>}
-                <Link href={l.href}
-                  className="text-[10px] tracking-widest uppercase text-dark-700 hover:text-gold-600 font-montserrat transition-colors py-3">
-                  {l.label}
-                </Link>
-              </span>
+        {/* ── Secondary category bar (desktop only) ── */}
+        <div className="hidden md:flex items-center justify-between border-b border-cream-200 bg-cream-100">
+          <div className="flex items-center divide-x divide-cream-300">
+            {CATEGORY_LINKS.map((l) => (
+              <Link key={l.label} href={l.href}
+                className="font-montserrat text-[10px] tracking-widest uppercase text-dark-700 hover:text-gold-600 hover:bg-cream-200 transition-colors px-5 py-3 whitespace-nowrap cursor-pointer">
+                {l.label}
+              </Link>
             ))}
           </div>
           <Link href="/about"
-            className="flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 text-[9px] tracking-widest uppercase px-4 py-2.5 font-montserrat font-medium transition-colors my-1.5">
+            className="flex-shrink-0 flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 font-montserrat text-[9px] tracking-widest uppercase px-5 py-3.5 font-medium transition-colors whitespace-nowrap cursor-pointer">
             <Calendar size={12} />
             Book an Appointment
           </Link>
         </div>
       </header>
 
-      {/* Mobile drawer menu */}
+      {/* ── Mobile drawer ── */}
       {mobileOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setMobileOpen(false)} />
-          <div className="absolute left-0 top-0 bottom-0 w-72 bg-cream-50 shadow-2xl flex flex-col pt-20 pb-8 px-8 animate-slide-in-right overflow-y-auto">
-            <nav className="flex flex-col gap-6">
+          <div className="absolute left-0 top-0 bottom-0 w-72 bg-cream-50 shadow-2xl flex flex-col pt-16 pb-8 px-8 animate-slide-in-right overflow-y-auto">
+            <nav className="flex flex-col gap-5">
               {NAV_LINKS.map((l) => (
-                <Link key={l.href + l.label} href={l.href} onClick={() => setMobileOpen(false)}
-                  className="font-cormorant text-2xl text-dark-900 tracking-wide">
+                <Link key={l.label} href={l.href} onClick={() => setMobileOpen(false)}
+                  className="font-cormorant text-2xl text-dark-900 tracking-wide cursor-pointer">
                   {l.label}
                 </Link>
               ))}
-              <div className="border-t border-cream-300 pt-6 flex flex-col gap-4">
+              <div className="border-t border-cream-300 pt-5 flex flex-col gap-3.5">
                 {CATEGORY_LINKS.map((l) => (
-                  <Link key={l.href + l.label} href={l.href} onClick={() => setMobileOpen(false)}
-                    className="text-[11px] tracking-widest uppercase text-dark-700 hover:text-gold-600 transition-colors">
+                  <Link key={l.label} href={l.href} onClick={() => setMobileOpen(false)}
+                    className="font-montserrat text-[11px] tracking-widest uppercase text-dark-700 hover:text-gold-600 transition-colors cursor-pointer">
                     {l.label}
                   </Link>
                 ))}
               </div>
               <Link href="/about" onClick={() => setMobileOpen(false)}
-                className="mt-4 flex items-center justify-center gap-2 bg-gold-500 text-dark-900 text-[10px] tracking-widest uppercase px-4 py-3 font-montserrat font-medium">
+                className="mt-3 flex items-center justify-center gap-2 bg-gold-500 text-dark-900 font-montserrat text-[10px] tracking-widest uppercase px-4 py-3 font-medium cursor-pointer">
                 <Calendar size={13} />
                 Book an Appointment
               </Link>
