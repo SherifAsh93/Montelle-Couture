@@ -23,23 +23,23 @@ export function HeroBanner({ banners }: { banners: Banner[] }) {
 
   if (banners.length === 0) {
     return (
-      <div className="relative h-[88vh] bg-cream-100 flex items-center justify-center overflow-hidden">
+      <div className="relative h-[72vh] md:h-[88vh] bg-cream-100 flex items-center justify-center overflow-hidden">
         {/* Decorative corner frames */}
-        <div className="absolute top-6 left-6 w-20 h-20 border-l border-t border-gold-400 opacity-50 pointer-events-none" />
-        <div className="absolute top-6 right-6 w-20 h-20 border-r border-t border-gold-400 opacity-50 pointer-events-none" />
-        <div className="absolute bottom-6 left-6 w-20 h-20 border-l border-b border-gold-400 opacity-50 pointer-events-none" />
-        <div className="absolute bottom-6 right-6 w-20 h-20 border-r border-b border-gold-400 opacity-50 pointer-events-none" />
+        <div className="absolute top-6 left-6 w-16 h-16 border-l border-t border-gold-400 opacity-40 pointer-events-none" />
+        <div className="absolute top-6 right-6 w-16 h-16 border-r border-t border-gold-400 opacity-40 pointer-events-none" />
+        <div className="absolute bottom-6 left-6 w-16 h-16 border-l border-b border-gold-400 opacity-40 pointer-events-none" />
+        <div className="absolute bottom-6 right-6 w-16 h-16 border-r border-b border-gold-400 opacity-40 pointer-events-none" />
 
-        {/* Subtle background texture */}
+        {/* Subtle background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-cream-50 via-cream-100 to-cream-200 opacity-60 pointer-events-none" />
 
         {/* Centred content */}
-        <div className="relative z-10 text-center px-8 max-w-2xl mx-auto animate-fade-in-up">
+        <div className="relative z-10 text-center px-8 max-w-4xl mx-auto animate-fade-in-up">
           <p className="font-montserrat text-[9px] tracking-[0.5em] uppercase text-gold-600 mb-6">
             ✦ &nbsp; Timeless Elegance &nbsp; ✦
           </p>
 
-          <h1 className="font-cormorant text-6xl sm:text-7xl md:text-8xl text-dark-900 leading-[1.05] mb-6">
+          <h1 className="font-cormorant text-5xl sm:text-6xl md:text-7xl text-dark-900 leading-[1.05] mb-6">
             For the moments<br />before <em>forever</em>
           </h1>
 
