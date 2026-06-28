@@ -135,6 +135,14 @@ Sub (Dresses): Long Dress, Short Dress
 - **CRITICAL Tailwind v4 bug:** An unlayered `* { margin:0; padding:0 }` CSS reset in globals.css was overriding ALL `@layer utilities` classes (unlayered beats layered regardless of specificity). This killed every `px-*`, `py-*`, `mx-*`, `my-*` utility site-wide. Fixed by removing the duplicate reset — Tailwind v4 base layer handles it correctly. Never add unlayered resets after `@import "tailwindcss"`.
 - **Secondary bar inline padding:** uses `style={{ padding:'12px 28px' }}` (not Tailwind px classes) for navbar links — added before the root-cause fix, still works correctly.
 
+## Mobile Layout Notes
+
+- **Scrollbar**: Custom 5px gold scrollbar scoped to `@media (hover: hover) and (pointer: fine)` (desktop/mouse only). Mobile touch devices get native overlay scrollbars (0px width) — full 390px content area.
+- **Hero text**: `px-4 md:px-8` on content div — mobile needs px-4 so "For the moments" fits in ~358px at text-5xl. px-8 was 326px and caused 3-line wrap.
+- **About hero**: `text-4xl md:text-6xl` — mobile needs 4xl so "Crafted with Love," fits on one line.
+- **pb-safe**: Defined in globals.css as `padding-bottom: env(safe-area-inset-bottom, 0px)` for iPhone home indicator.
+- **AnnouncementBar marquee**: Double `overflow-hidden` + `will-change: transform` on span for reliable GPU clipping on Android Chrome.
+
 ## Known Issues
 
 - `GITHUB_TOKEN` must be set in Vercel env for image uploads to work (needs GitHub PAT with `repo` scope).
