@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { ShoppingBag, Search, Menu, X } from 'lucide-react'
+import { ShoppingBag, Search, Menu, X, Calendar } from 'lucide-react'
 import { useCart } from '@/store/cart'
 import { useRef, useState, useEffect, useCallback } from 'react'
 
@@ -20,6 +20,7 @@ const CATEGORY_LINKS = [
   { label: 'Bridal Sets', href: '/shop/bridal-clothes' },
   { label: 'Dresses', href: '/shop/dresses' },
   { label: 'Accessories', href: '/shop/bridal-accessories' },
+  { label: 'Gift Cards', href: '/shop' },
   { label: 'Custom Orders', href: '/about' },
 ]
 
@@ -108,13 +109,23 @@ export function Navbar() {
         </div>
 
         {/* Secondary category bar (desktop) */}
-        <div className="hidden md:flex items-center justify-center gap-10 py-2.5 border-b border-cream-200 bg-cream-100">
-          {CATEGORY_LINKS.map((l) => (
-            <Link key={l.href} href={l.href}
-              className="text-[10px] tracking-widest uppercase text-dark-700 hover:text-gold-600 font-montserrat transition-colors py-1">
-              {l.label}
-            </Link>
-          ))}
+        <div className="hidden md:flex items-center justify-between px-8 py-0 border-b border-cream-200 bg-cream-100">
+          <div className="flex items-center gap-8">
+            {CATEGORY_LINKS.map((l, i) => (
+              <span key={l.href + l.label} className="flex items-center gap-8">
+                {i > 0 && <span className="text-cream-300 text-xs select-none">|</span>}
+                <Link href={l.href}
+                  className="text-[10px] tracking-widest uppercase text-dark-700 hover:text-gold-600 font-montserrat transition-colors py-3">
+                  {l.label}
+                </Link>
+              </span>
+            ))}
+          </div>
+          <Link href="/about"
+            className="flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 text-[9px] tracking-widest uppercase px-4 py-2.5 font-montserrat font-medium transition-colors my-1.5">
+            <Calendar size={12} />
+            Book an Appointment
+          </Link>
         </div>
       </header>
 
@@ -122,7 +133,7 @@ export function Navbar() {
       {mobileOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setMobileOpen(false)} />
-          <div className="absolute left-0 top-0 bottom-0 w-72 bg-cream-50 shadow-2xl flex flex-col pt-20 pb-8 px-8 animate-slide-in-right">
+          <div className="absolute left-0 top-0 bottom-0 w-72 bg-cream-50 shadow-2xl flex flex-col pt-20 pb-8 px-8 animate-slide-in-right overflow-y-auto">
             <nav className="flex flex-col gap-6">
               {NAV_LINKS.map((l) => (
                 <Link key={l.href + l.label} href={l.href} onClick={() => setMobileOpen(false)}
@@ -132,12 +143,17 @@ export function Navbar() {
               ))}
               <div className="border-t border-cream-300 pt-6 flex flex-col gap-4">
                 {CATEGORY_LINKS.map((l) => (
-                  <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)}
+                  <Link key={l.href + l.label} href={l.href} onClick={() => setMobileOpen(false)}
                     className="text-[11px] tracking-widest uppercase text-dark-700 hover:text-gold-600 transition-colors">
                     {l.label}
                   </Link>
                 ))}
               </div>
+              <Link href="/about" onClick={() => setMobileOpen(false)}
+                className="mt-4 flex items-center justify-center gap-2 bg-gold-500 text-dark-900 text-[10px] tracking-widest uppercase px-4 py-3 font-montserrat font-medium">
+                <Calendar size={13} />
+                Book an Appointment
+              </Link>
             </nav>
           </div>
         </div>
