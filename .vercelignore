@@ -1,0 +1,7 @@
+node_modules
+.next
+src/generated
+screenshots
+resources
+*.log
+prisma/seed-products.cjs
