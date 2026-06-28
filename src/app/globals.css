@@ -23,11 +23,10 @@
   --font-montserrat: "Montserrat", system-ui, sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* NOTE: box-sizing, margin:0, padding:0 resets are already handled by
+   Tailwind v4's @layer base. Duplicating them here as unlayered CSS would
+   beat all @layer utilities (unlayered > layered regardless of specificity),
+   killing every px-*, py-*, mx-*, my-* utility on the site. */
 
 button, [role="button"], a, label[for], select {
   cursor: pointer;
