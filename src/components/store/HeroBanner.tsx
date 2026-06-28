@@ -34,7 +34,7 @@ export function HeroBanner({ banners }: { banners: Banner[] }) {
         <div className="absolute inset-0 bg-gradient-to-br from-cream-50 via-cream-100 to-cream-200 opacity-60 pointer-events-none" />
 
         {/* Centred content */}
-        <div className="relative z-10 text-center px-8 max-w-4xl mx-auto animate-fade-in-up">
+        <div className="relative z-10 text-center px-4 md:px-8 max-w-4xl mx-auto animate-fade-in-up">
           <p className="font-montserrat text-[9px] tracking-[0.5em] uppercase text-gold-600 mb-6">
             ✦ &nbsp; Timeless Elegance &nbsp; ✦
           </p>

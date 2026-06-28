@@ -10,7 +10,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="py-20 px-6 text-center bg-cream-100 border-b border-cream-200">
         <p className="text-[10px] tracking-[0.4em] uppercase text-gold-600 mb-4">✦ Our Story ✦</p>
-        <h1 className="font-cormorant text-5xl md:text-6xl text-dark-900 mb-6 leading-tight">
+        <h1 className="font-cormorant text-4xl md:text-6xl text-dark-900 mb-6 leading-tight">
           Crafted with Love,<br /><em>Made for Forever</em>
         </h1>
         <div className="w-16 h-[1px] bg-gold-400 mx-auto mb-8" />
@@ -24,7 +24,7 @@ export default function AboutPage() {
       <section className="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center">
         <div className="space-y-5">
           <p className="text-[10px] tracking-[0.4em] uppercase text-gold-600">Who We Are</p>
-          <h2 className="font-cormorant text-4xl text-dark-900 leading-tight">
+          <h2 className="font-cormorant text-3xl md:text-4xl text-dark-900 leading-tight">
             Where Every Detail<br />Tells Your Story
           </h2>
           <div className="w-10 h-[1px] bg-gold-400" />
