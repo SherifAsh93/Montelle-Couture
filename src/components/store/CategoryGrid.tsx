@@ -3,14 +3,14 @@ import Link from 'next/link'
 
 type Category = { id: string; name: string; slug: string; image?: string | null }
 
-// Warm champagne-gold tones — all within brand palette, visually varied
+// Warm champagne-to-gold tones, lighter so text reads without heavy overlay
 const FALLBACK_GRADIENTS = [
-  'from-[#d4c4a0] to-[#a89060]',
-  'from-[#c8b88a] to-[#9c8050]',
-  'from-[#d8c8a4] to-[#b09870]',
-  'from-[#c4b48a] to-[#988462]',
-  'from-[#ccbc98] to-[#a8906a]',
-  'from-[#d0c09c] to-[#aa9468]',
+  'from-[#e8dcc4] to-[#c8a870]',
+  'from-[#e0d4b8] to-[#c0a060]',
+  'from-[#ecddc8] to-[#ccac78]',
+  'from-[#e4d8c0] to-[#c4a46a]',
+  'from-[#e8dcc4] to-[#c8aa72]',
+  'from-[#e2d6bc] to-[#c2a26c]',
 ]
 
 export function CategoryGrid({ categories }: { categories: Category[] }) {
@@ -35,19 +35,19 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
               <div className={`absolute inset-0 bg-gradient-to-br ${FALLBACK_GRADIENTS[i % FALLBACK_GRADIENTS.length]} transition-transform duration-700 group-hover:scale-105`} />
             )}
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-dark-900/25 group-hover:bg-dark-900/45 transition-colors duration-400" />
+            {/* Overlay — keep light so gradient warmth shows through */}
+            <div className="absolute inset-0 bg-dark-900/10 group-hover:bg-dark-900/30 transition-colors duration-300" />
 
             {/* Content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 p-4">
-              <div className="w-6 h-px bg-cream-50/70" />
-              <p className="font-cormorant text-lg md:text-xl text-cream-50 tracking-wide text-center leading-tight">
+              <div className="w-6 h-px bg-dark-900/40" />
+              <p className="font-cormorant text-lg md:text-2xl text-dark-900 tracking-wide text-center leading-tight drop-shadow-sm">
                 {cat.name}
               </p>
-              <p className="font-montserrat text-[8px] md:text-[9px] tracking-[0.35em] uppercase text-gold-300 group-hover:text-gold-200 transition-colors">
+              <p className="font-montserrat text-[8px] md:text-[9px] tracking-[0.35em] uppercase text-gold-700 group-hover:text-dark-900 transition-colors">
                 Explore
               </p>
-              <div className="w-6 h-px bg-cream-50/70" />
+              <div className="w-6 h-px bg-dark-900/40" />
             </div>
           </Link>
         ))}

@@ -119,20 +119,19 @@ export function Navbar() {
         </div>
 
         {/* ── Secondary category bar — desktop only ── */}
-        <div className="hidden md:flex items-center border-b border-cream-200 bg-cream-100">
-          {/* Category links with explicit right-border separators */}
-          <div className="flex items-center flex-1 min-w-0">
+        {/* CSS grid ensures the CTA button always gets its natural width */}
+        <div className="hidden md:grid border-b border-cream-200 bg-cream-100"
+             style={{ gridTemplateColumns: '1fr auto' }}>
+          <div className="flex items-center overflow-x-auto">
             {SECONDARY_LINKS.map((l, i) => (
               <Link key={l.label} href={l.href}
-                style={{ borderRight: i < SECONDARY_LINKS.length - 1 ? '1px solid #eddcc8' : 'none' }}
-                className="font-montserrat text-[10px] tracking-[0.15em] uppercase text-dark-700 hover:text-gold-600 hover:bg-cream-200 transition-colors px-6 py-3 whitespace-nowrap">
+                className={`flex-shrink-0 font-montserrat text-[10px] tracking-[0.12em] uppercase text-dark-700 hover:text-gold-600 hover:bg-cream-200 transition-colors px-6 py-3 whitespace-nowrap${i < SECONDARY_LINKS.length - 1 ? ' border-r border-r-[#eddcc8]' : ''}`}>
                 {l.label}
               </Link>
             ))}
           </div>
-          {/* Book an Appointment CTA */}
           <Link href="/about"
-            className="flex-shrink-0 flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 font-montserrat text-[9px] tracking-widest uppercase px-5 py-3.5 font-medium transition-colors whitespace-nowrap border-l border-gold-600">
+            className="flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-dark-900 font-montserrat text-[9px] tracking-[0.12em] uppercase px-6 py-3 font-medium transition-colors whitespace-nowrap border-l border-l-[#a8873d]">
             <Calendar size={12} />
             Book an Appointment
           </Link>
