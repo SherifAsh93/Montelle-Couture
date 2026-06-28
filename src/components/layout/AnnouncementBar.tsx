@@ -9,9 +9,14 @@ export function AnnouncementBar() {
   const text = messages.join('     ')
 
   return (
-    <div className="bg-dark-900 text-cream-100 text-[10px] tracking-widest overflow-hidden py-2.5">
-      <div className="flex whitespace-nowrap">
-        <span className="animate-marquee pr-8">{text + '     ' + text}</span>
+    <div className="bg-dark-900 text-cream-100 text-[10px] tracking-widest py-2.5 overflow-hidden">
+      <div className="overflow-hidden">
+        <span
+          className="inline-block whitespace-nowrap animate-marquee"
+          style={{ willChange: 'transform' }}
+        >
+          {text}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{text}
+        </span>
       </div>
     </div>
   )

@@ -70,9 +70,15 @@ body {
 .font-cormorant { font-family: var(--font-cormorant); }
 .font-montserrat { font-family: var(--font-montserrat); }
 
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #faf5ee; }
-::-webkit-scrollbar-thumb { background: #d4b96a; border-radius: 99px; }
+/* Custom scrollbar — desktop/mouse only; mobile uses native overlay scrollbars */
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #faf5ee; }
+  ::-webkit-scrollbar-thumb { background: #d4b96a; border-radius: 99px; }
+}
+
+/* Safe-area bottom padding for iPhone home indicator */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
 
 input:focus, textarea:focus, select:focus {
   outline: none;

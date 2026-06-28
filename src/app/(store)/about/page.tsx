@@ -77,7 +77,7 @@ export default function AboutPage() {
           Reach out to us and we will be in touch within 24 hours.
         </p>
         <form className="space-y-4 text-left">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-[10px] tracking-widest uppercase text-dark-700 block mb-1.5">Your Name</label>
               <input type="text" placeholder="Full name" required

@@ -32,12 +32,12 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
       {/* Category filter pills */}
       <div className="flex flex-wrap gap-2 justify-center mb-10">
         <a href="/shop"
-          className={`text-[10px] tracking-widest uppercase px-4 py-2 border transition-colors ${!cat ? 'bg-dark-900 text-cream-50 border-dark-900' : 'border-cream-300 text-dark-700 hover:border-dark-900'}`}>
+          className={`text-[10px] tracking-widest uppercase px-5 py-3 border transition-colors ${!cat ? 'bg-dark-900 text-cream-50 border-dark-900' : 'border-cream-300 text-dark-700 hover:border-dark-900'}`}>
           All
         </a>
         {categories.map((c) => (
           <a key={c.id} href={`/shop?cat=${c.slug}`}
-            className={`text-[10px] tracking-widest uppercase px-4 py-2 border transition-colors ${cat === c.slug ? 'bg-dark-900 text-cream-50 border-dark-900' : 'border-cream-300 text-dark-700 hover:border-dark-900'}`}>
+            className={`text-[10px] tracking-widest uppercase px-5 py-3 border transition-colors ${cat === c.slug ? 'bg-dark-900 text-cream-50 border-dark-900' : 'border-cream-300 text-dark-700 hover:border-dark-900'}`}>
             {c.name}
           </a>
         ))}
