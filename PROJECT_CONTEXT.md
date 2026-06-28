@@ -4,10 +4,11 @@
 
 Luxury bridal ecommerce store for Montelle Couture. Customers browse and order bridal wear — veils, robes, corsets, dresses, and accessories. Includes a full admin panel for product/order/category/banner management and image uploads via GitHub CDN.
 
-**Live URL:** TBD (deploying to Vercel free subdomain)
-**GitHub:** https://github.com/SherifAsh93/Montelle
+**Live URL:** https://montelle-couture.vercel.app
+**GitHub:** https://github.com/SherifAsh93/Montelle-Couture
 **Local:** `/home/sherif/sites/Montelle`
-**Status:** IN PROGRESS — real-life bridal business still being set up
+**Admin:** triple-click logo → password `1415`
+**Status:** LIVE — ready for products to be added
 **Stack:** Next.js 16 · TypeScript 5 · Tailwind CSS 4 · Neon PostgreSQL · Prisma 7 · Cormorant Garamond + Montserrat · Jose (JWT) · Zustand 5 · GitHub + jsDelivr CDN
 
 ---
@@ -100,7 +101,7 @@ npx prisma studio  # DB GUI → http://localhost:5555
 
 Images uploaded via admin are pushed to `public/images/products/` in the GitHub repo via GitHub API, served via:
 ```
-https://cdn.jsdelivr.net/gh/SherifAsh93/Montelle@main/public/images/products/{filename}
+https://cdn.jsdelivr.net/gh/SherifAsh93/Montelle-Couture@main/public/images/products/{filename}
 ```
 `GITHUB_TOKEN` must be set in Vercel env vars for uploads to work.
 
@@ -126,15 +127,13 @@ Sub (Dresses): Long Dress, Short Dress
 
 ## Known Issues
 
-- `GITHUB_TOKEN` must be set in Vercel env for image uploads to work.
-- Project not yet complete — being developed in parallel with real business setup.
+- `GITHUB_TOKEN` must be set in Vercel env for image uploads to work (currently empty — needs a GitHub PAT with `repo` scope).
 
 ---
 
 ## Next Steps
 
-- Add real product data once business inventory is ready
-- Add Arabic language support
-- Implement newsletter subscription
-- Add "Book an Appointment" flow
-- Last updated: 2026-06-14
+- Set `GITHUB_TOKEN` in Vercel env vars to enable image uploads from admin
+- Add real product data (Admin → `/admin/products/new`)
+- Add hero banners (Admin → `/admin/banners`)
+- Last updated: 2026-06-28
