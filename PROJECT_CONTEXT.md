@@ -125,9 +125,18 @@ Sub (Dresses): Long Dress, Short Dress
 
 ---
 
+## UI Notes
+
+- **Logo click:** single click → home `/`; triple-click (within 800ms) → admin `/admin`
+- **Hero fallback:** when no banners in DB, renders centered luxury layout with gold corner frames, decorative divider, and CTA. Looks intentional, not empty.
+- **Category cards fallback:** when no category images, warm champagne-gold gradients with dark text overlay (intentional luxury look)
+- **Secondary nav (desktop):** 6 items (Veils/Robes/Corsets/Bridal Sets/Gift Cards/Custom Orders) with `rgba(0,0,0,0.12)` separators and "Book an Appointment" gold CTA pinned right via `position:absolute`
+- **Tailwind v4 quirk:** `px-N` utilities give unexpectedly small values — use inline `style={{ padding: '...' }}` for critical spacing
+- **FeaturesStrip:** 2-col on mobile, 4-col on desktop
+
 ## Known Issues
 
-- `GITHUB_TOKEN` must be set in Vercel env for image uploads to work (currently empty — needs a GitHub PAT with `repo` scope).
+- `GITHUB_TOKEN` must be set in Vercel env for image uploads to work (needs GitHub PAT with `repo` scope).
 
 ---
 
